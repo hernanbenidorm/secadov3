@@ -1,0 +1,253 @@
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{titulo}}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+
+	<ion-fab top right edge>
+		<button ion-fab (click)="insertaMuestra()">
+     <ion-icon ios="ios-add" md="md-add"></ion-icon>
+    </button>
+	</ion-fab>
+	<ion-slides>
+		<ion-slide>
+			<ion-card>
+
+				<ion-list>
+					<div *ngFor="let muestra of centrifuga,let i = index">
+						<ion-item *ngIf="i<8">
+							<ion-avatar item-left>
+								<img src={{checkImage(muestra.letra_centrifuga)}}>
+							</ion-avatar>
+							<ion-fab right #fab>
+								<button ion-fab mini color="orange"><ion-icon ios="ios-menu" md="md-menu"></ion-icon></button>
+								<ion-fab-list side="left">
+									<button ion-fab color="primary" (click)="editaMuestra($event, muestra)"><ion-icon ios="ios-create" md="md-create"></ion-icon></button>
+									<button ion-fab color="danger" (click)="deleteMuestra(muestra.id)"><ion-icon ios="ios-trash" md="md-trash"></ion-icon></button>
+									<button ion-fab color="secondary" (click)="share('camiones', fab, muestra)"><img src="assets/truck.png"></button>
+									<button ion-fab color="orange" (click)="anade(muestra)"><ion-icon ios="ios-create" md="md-create"></ion-icon></button>
+								</ion-fab-list>
+							</ion-fab>
+							<p>Ent:
+								<ion-badge> {{muestra.sequedad_entrada}} </ion-badge> Sal:
+								<ion-badge> {{muestra.sequedad_salida}}</ion-badge> Cons:
+								<ion-badge> {{muestra.consigna}}</ion-badge>
+
+							</p>
+							<p> Fecha:
+								<ion-badge> {{muestra.fecha_muestra}}</ion-badge>Hora:
+								<ion-badge> {{muestra.hora}} </ion-badge>
+							</p>
+							<p>VR:
+								<ion-badge> {{muestra.vr}} </ion-badge> PAR:
+								<ion-badge> {{muestra.par}} </ion-badge>Poli:
+								<ion-badge> {{muestra.poli}} </ion-badge>
+								<p>
+
+						</ion-item>
+					</div>
+				</ion-list>
+			</ion-card>
+		</ion-slide>
+		<ion-slide>
+
+			<ion-grid class="centrifugas">
+				<ion-row>
+					<ion-col width-25>Hora Inicio
+						<ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+					</ion-col>
+					<ion-col width-25>Hora a las 4
+						<ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+					</ion-col>
+					<ion-col width-25>Hora Cierre
+						<ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+					</ion-col>
+					<ion-col width-25> </ion-col>
+				</ion-row>
+
+				<div class=centrifuga>
+					<ion-row>
+						<ion-col class="header">CENTRIFUGA A</ion-col>
+					</ion-row>
+
+					<ion-row class=headercaudal>
+
+						<ion-col width-25> CAUDAL 1</ion-col>
+						<ion-col width-25> CAUDAL 2</ion-col>
+						<ion-col width-25> CAUDAL 3</ion-col>
+						<ion-col width-25> TOTAL A</ion-col>
+					</ion-row>
+
+					<ion-row class="caudal">
+						<ion-col width-25>
+							<ion-input type="tel" [(ngModel)]=caudal1A (change)="suma()"></ion-input>
+						</ion-col>
+						<ion-col width-25 [class.menor]="caudal2A < caudal1A">
+							<ion-input [disabled]="caudal1A=='0'" type="tel" [(ngModel)]=caudal2A (change)="suma()"></ion-input>
+						</ion-col>
+						<ion-col width-25 [class.menor]="caudal3A < caudal2A">
+							<ion-input [disabled]="caudal2A=='0'" type="tel" [(ngModel)]=caudal3A (change)="suma()"></ion-input>
+						</ion-col>
+						<ion-col width-25 class="subtot">{{totalCaudalA}}</ion-col>
+					</ion-row>
+
+				</div>
+
+				<div class=centrifuga>
+					<ion-row>
+						<ion-col class="header">CENTRIFUGA B</ion-col>
+					</ion-row>
+
+					<ion-row class=headercaudal>
+
+						<ion-col width-25> CAUDAL 1</ion-col>
+						<ion-col width-25> CAUDAL 2</ion-col>
+						<ion-col width-25> CAUDAL 3</ion-col>
+						<ion-col width-25> TOTAL B</ion-col>
+					</ion-row>
+
+					<ion-row class="caudal">
+						<ion-col width-25>
+							<ion-input type="tel" [(ngModel)]=caudal1B (change)="suma()"></ion-input>
+						</ion-col>
+						<ion-col width-25 [class.menor]="caudal2B < caudal1B">
+							<ion-input [disabled]="caudal1B=='0'" type="tel" [(ngModel)]=caudal2B (change)="suma()"></ion-input>
+						</ion-col>
+						<ion-col width-25 [class.menor]="caudal3B < caudal2B">
+							<ion-input [disabled]="caudal2B=='0'" type="tel" [(ngModel)]=caudal3B (change)="suma()"></ion-input>
+						</ion-col>
+						<ion-col width-25 class="subtot">{{totalCaudalB}}</ion-col>
+					</ion-row>
+
+				</div>
+				<div class=centrifuga>
+					<ion-row>
+						<ion-col class="header">CENTRIFUGA C</ion-col>
+					</ion-row>
+
+					<ion-row class=headercaudal>
+
+						<ion-col width-25> CAUDAL 1</ion-col>
+						<ion-col width-25> CAUDAL 2</ion-col>
+						<ion-col width-25> CAUDAL 3</ion-col>
+						<ion-col width-25> TOTAL C</ion-col>
+					</ion-row>
+
+					<ion-row class="caudal">
+						<ion-col width-25>
+							<ion-input type="tel" [(ngModel)]=caudal1C (change)="suma()"></ion-input>
+						</ion-col>
+						<ion-col width-25 [class.menor]="caudal2C < caudal1C">
+							<ion-input [disabled]="caudal1C=='0'" type="tel" [(ngModel)]=caudal2C (change)="suma()"></ion-input>
+						</ion-col>
+						<ion-col width-25 [class.menor]="caudal3C < caudal2C">
+							<ion-input [disabled]="caudal2C=='0'" type="tel" [(ngModel)]=caudal3C (change)="suma()"></ion-input>
+						</ion-col>
+						<ion-col width-25 class="subtot">{{totalCaudalC}}</ion-col>
+					</ion-row>
+
+
+					<ion-row class=mediasHeader>
+
+						<ion-col width-25> MEDIA SAL A</ion-col>
+						<ion-col width-25> MEDIA SAL B</ion-col>
+						<ion-col width-25> MEDIA SAL C</ion-col>
+						<ion-col width-25> MEDIA ENT</ion-col>
+					</ion-row>
+					<ion-row class=medias>
+
+						<ion-col width-25>{{mediaA}}</ion-col>
+						<ion-col width-25>{{mediaB}}</ion-col>
+						<ion-col width-25>{{mediaC}}</ion-col>
+						<ion-col width-25>{{mediaEnt}}</ion-col>
+					</ion-row>
+				</div>
+
+
+
+
+
+				<ion-row>
+					<ion-col width-25>
+						<p></p>
+					</ion-col>
+					<ion-col width-25>
+						<p></p>
+					</ion-col>
+					<ion-col width-25 class="subtot">
+						<p>{{totalCaudal}}</p>
+					</ion-col>
+					<ion-col width-25>
+						<p></p>
+					</ion-col>
+				</ion-row>
+
+
+
+
+
+
+
+			</ion-grid>
+
+
+
+
+
+
+
+
+
+
+
+			<h3 *ngIf="!muestrasCamion">No hay muestras</h3>
+			<ion-list *ngIf="muestrasCamion">
+				<div *ngFor="let muestra of muestrasCamion">
+					<ion-item>
+						<ion-avatar item-left>
+							<img src={{checkImage(muestra.letra_centrifuga)}}>
+						</ion-avatar>
+						<ion-fab right #fab>
+							<button ion-fab mini color="orange"><ion-icon ios="ios-menu" md="md-menu"></ion-icon></button>
+							<ion-fab-list side="left">
+								<button ion-fab color="primary" (click)="editaMuestra($event, muestra)"><ion-icon ios="ios-create" md="md-create"></ion-icon></button>
+								<button ion-fab color="danger" (click)="deleteMuestra(muestra.id)"><ion-icon ios="ios-trash" md="md-trash"></ion-icon></button>
+								<button ion-fab color="secondary" (click)="share('camiones', fab)"><img src="assets/truck.png"></button>
+
+							</ion-fab-list>
+						</ion-fab>
+						<p>Ent:
+							<ion-badge> {{muestra.sequedad_entrada}} </ion-badge> Sal:
+							<ion-badge> {{muestra.sequedad_salida}}</ion-badge> Cons:
+							<ion-badge> {{muestra.consigna}}</ion-badge>
+
+						</p>
+						<p> Fecha:
+							<ion-badge> {{muestra.fecha_muestra}}</ion-badge>Hora:
+							<ion-badge> {{muestra.hora}} </ion-badge>
+						</p>
+						<p>VR:
+							<ion-badge> {{muestra.vr}} </ion-badge> PAR:
+							<ion-badge> {{muestra.par}} </ion-badge>Poli:
+							<ion-badge> {{muestra.poli}} </ion-badge>
+							<p>
+
+					</ion-item>
+				</div>
+			</ion-list>
+		</ion-slide>
+	</ion-slides>
+
+
+
+
+
+
+
+
+
+
+</ion-content>

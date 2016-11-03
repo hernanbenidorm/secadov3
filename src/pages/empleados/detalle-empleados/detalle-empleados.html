@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-navbar >
+    <ion-title>{{titulo}}</ion-title>
+</ion-navbar>
+</ion-header>
+
+
+<ion-fab right top>
+  <button ion-fab (click)="pushPage($event, empleado)">
+    <ion-icon ios="ios-create" md="md-create"></ion-icon>
+    </button>
+</ion-fab>
+
+<ion-content>
+
+  
+  <ion-card>
+    <ion-list>
+
+      <ion-item>
+        <ion-thumbnail>
+          <img src="assets/person.png">
+        </ion-thumbnail>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon ios="ios-person" md="md-person" item-left></ion-icon>
+        <ion-label stacked *ngIf="empleado.nombre">Nombre: <strong>{{empleado.nombre}}</strong></ion-label>
+        <ion-label stacked *ngIf="!empleado.nombre">Nombre: <strong>Editar campo</strong></ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon ios="ios-pricetag" md="md-pricetag" item-left></ion-icon>
+        <ion-label stacked *ngIf="empleado.dni">DNI: <strong>{{empleado.dni}}</strong></ion-label>
+        <ion-label stacked *ngIf="!empleado.dni">DNI: <strong>Editar campo</strong></ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon ios="ios-call" md="md-call" item-left></ion-icon>
+        <ion-label stacked *ngIf="empleado.telefono">Telefono: <strong>{{empleado.telefono}}</strong></ion-label>
+        <ion-label stacked *ngIf="!empleado.telefono">Telefono: <strong>Editar campo</strong></ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon ios="ios-locate" md="md-locate" item-left></ion-icon>
+        <ion-label stacked *ngIf="empleado.direccion">Direccion:<strong> {{empleado.direccion}}</strong></ion-label>
+        <ion-label stacked *ngIf="!empleado.direccion">Direccion: <strong>Editar campo</strong></ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="calendar" item-left></ion-icon>
+        <ion-label stacked *ngIf="empleado.fecha_nacimiento">Fecha de nacimiento: <strong>{{empleado.fecha_nacimiento}}</strong></ion-label>
+        <ion-label stacked *ngIf="!empleado.fecha_nacimiento">Fecha de nacimiento: <strong>Editar campo</strong></ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="mail" item-left></ion-icon>
+        <ion-label stacked *ngIf="empleado.email">Correo electronico: <strong>{{empleado.email}}</strong></ion-label>
+        <ion-label stacked *ngIf="!empleado.email">Correo electronico: <strong>Editar campo</strong></ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon ios="ios-information" md="md-information" item-left></ion-icon>
+        <ion-label stacked *ngIf="empleado.num_ss">Numero de SS: <strong>{{empleado.num_ss}}</strong></ion-label>
+        <ion-label stacked *ngIf="!empleado.num_ss">Numero de SS: <strong>Editar campo</strong></ion-label>
+      </ion-item>
+
+    </ion-list>
+  </ion-card>
+
+
+
+  <ion-fab bottom right>
+    <button ion-fab color="danger" (click)='borrar()'>
+     <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+   </button>
+  </ion-fab>
+
+</ion-content>

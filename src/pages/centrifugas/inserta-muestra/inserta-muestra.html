@@ -1,0 +1,102 @@
+<!--
+  Generated template for the InsertaMuestra page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+	<ion-navbar>
+		<ion-title>{{accion}}</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	
+	<form [formGroup]="myForm" (ngSubmit)="saveData()">
+		<ion-list>
+
+			<ion-item>
+				<ion-label>Empleado</ion-label>
+				<ion-select [(ngModel)]="centrifuga.id_empleado" formControlName='id_empleado'>
+					<ion-option *ngFor="let empleado of empleados" [value]="empleado.id">{{empleado.nombre}}</ion-option>
+				</ion-select>
+			</ion-item>
+
+
+			<ion-item>
+				<ion-label>Centrifuga</ion-label>
+				<ion-select [(ngModel)]="centrifuga.letra_centrifuga" formControlName='letra_centrifuga'>
+					<ion-option value="A" selected="true">Centrifuga A</ion-option>
+					<ion-option value="B">Centrifuga B</ion-option>
+					<ion-option value="C">Centrifuga C</ion-option>
+				</ion-select>
+			</ion-item>
+
+			<ion-item>
+				<ion-label>Fecha</ion-label>
+				<ion-datetime displayFormat="DD-MM-YYYY" [(ngModel)]="centrifuga.fecha_muestra" formControlName="fecha_muestra"></ion-datetime>
+			</ion-item>
+
+			<ion-item>
+				<ion-label>Hora</ion-label>
+				<ion-datetime displayFormat="HH:mm" [(ngModel)]="centrifuga.hora" formControlName="hora"></ion-datetime>
+			</ion-item>
+
+		<ion-item>
+				<ion-label>Consigna</ion-label>
+				<ion-input type="tel" [(ngModel)]="centrifuga.consigna" formControlName="consigna"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>VA(r.p.m)</ion-label>
+				<ion-input type="tel" [(ngModel)]="centrifuga.va" formControlName="va"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>VR(r.p.m)</ion-label>
+				<ion-input type="tel" [(ngModel)]="centrifuga.vr" formControlName="vr"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>PAR(%)</ion-label>
+				<ion-input type="tel" [(ngModel)]="centrifuga.par" formControlName="par"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>Temperatura Entrada 1</ion-label>
+				<ion-input type="tel" [(ngModel)]="centrifuga.t_entrada" formControlName="t_entrada"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>Temperatura Entrada 2</ion-label>
+				<ion-input type="tel" [(ngModel)]="centrifuga.t_salida" formControlName="t_salida"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>Vibración</ion-label>
+				<ion-input type="tel" [(ngModel)]="centrifuga.vibracion" formControlName="vibracion"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>Sequedad Entrada(%)</ion-label>
+				<ion-input type="tel" [(ngModel)]="centrifuga.sequedad_entrada" formControlName="sequedad_entrada"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>Sequedad Salida(%)</ion-label>
+				<ion-input type="tel" [(ngModel)]="centrifuga.sequedad_salida" formControlName="sequedad_salida"></ion-input>
+			</ion-item>
+			<ion-item>
+				<ion-label>Caudal polielectrolito</ion-label>
+				<ion-input type="tel" [(ngModel)]="centrifuga.poli" formControlName="poli"></ion-input>
+			</ion-item>
+			
+			<ion-item>
+				<ion-label>Estado del Escurrido</ion-label>
+				<ion-select [(ngModel)]="centrifuga.escurrido" formControlName='escurrido'>
+					<ion-option value="Blanco" selected="true">Blanco</ion-option>
+					<ion-option value="Gris">Gris</ion-option>
+					<ion-option value="Negro">Negro</ion-option>
+				</ion-select>
+			</ion-item>
+
+			<ion-item>
+				<button ion-button block type="submit" [disabled]="!myForm.valid">{{accion}}</button>
+			</ion-item>
+
+		</ion-list>
+	</form>
+
+</ion-content>

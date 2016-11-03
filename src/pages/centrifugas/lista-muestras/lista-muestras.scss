@@ -1,0 +1,149 @@
+ion-content {}
+
+
+
+ion-badge {
+
+    font-size: 0.7em;
+
+}
+
+
+
+.badge-ios,
+.badge-wp,
+.badge-md {
+
+    color: black;
+
+    background-color: greenyellow;
+
+}
+
+
+
+.item p {
+
+    font-size: 0.6em;
+
+}
+
+
+.swiper-slide {
+
+    overflow-y: scroll;
+
+    display: block;
+
+}
+ion-datetime {
+  position: relative;
+}
+
+
+
+/*.caudales{
+
+     font-size: 14px;
+
+     border:1px solid black;
+
+     border-radius: 15px;
+
+     background-color: antiquewhite;
+
+    
+
+}*/
+
+.centrifuga{
+    background-color: gold;
+    border-radius: 5px;
+    margin-top:5px;
+}
+.caudal{
+    height: 25px;
+}
+
+//baja el pading del subtotal
+ion-col.subtot {
+    padding-top: 0.6em;
+}
+ion-col{
+  padding: 0px;
+}
+.headercaudal {
+    background-color:white;
+    padding:2px;
+}
+.header{
+    padding:5px;
+    background-color:darkorange;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+//
+ion-input .text-input {
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+    width:60px;
+    height:18px;
+    margin-top: 3px;
+}
+ion-input [disabled]{
+    background-color: darkgrey;
+    
+}
+.menor{ 
+    .text-input {
+    background-color: red;
+    color:white;
+    }   
+}
+
+
+
+
+/* ion-input .text-input,.text-input-ios,.text-input-wp {
+
+          font-size: 10px;
+
+          
+
+        text-align: center;
+
+        margin:3px;
+
+         border:1px solid black;
+
+         background-color:white;
+
+         border-radius: 15px; 
+
+         padding-right:0;
+
+}*/
+
+
+
+
+/*.subtot {
+
+    background-color: white;
+
+    width:100%;
+
+    margin:2px;
+
+    
+
+}*/
+
+
+.centrifugas {
+
+    font-size: 0.6em;
+
+}
